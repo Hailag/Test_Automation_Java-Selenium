@@ -151,10 +151,9 @@ public class TodoMVCTest extends AtTodoMVCPageWithClearedDataAfterEachTest {
         $("#todo-count>strong").shouldHave(exactText(Integer.toString(itemsLeftCount)));
     }
 
-   private void given (String ... taskTexts){
-
-     executeJavaScript("localStorage.setItem(\"todos-troopjs\", \"[{\\\"completed\\\":false, \\\"taskTexts\\\":\\\"new\\\"},{\\\"completed\\\":false, \\\"taskTexts\\\":\\\"new\\\"}]\")");
-   }
+   //private void given (String ... taskTexts){
+   //  executeJavaScript("localStorage.setItem(\"todos-troopjs\", \"[{\\\"completed\\\":false, \\\"taskTexts\\\":\\\"new\\\"},{\\\"completed\\\":false, \\\"taskTexts\\\":\\\"new\\\"}]\")");
+   //}
 
     private String makeGivenCommand(Task... tasks) {
         String results = "localStorage.setItem(\"todos-troopjs\", \"[";
