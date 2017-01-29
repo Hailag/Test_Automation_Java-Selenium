@@ -155,11 +155,11 @@ public class TodoMVCTest extends AtTodoMVCPageWithClearedDataAfterEachTest {
    //  executeJavaScript("localStorage.setItem(\"todos-troopjs\", \"[{\\\"completed\\\":false, \\\"taskTexts\\\":\\\"new\\\"},{\\\"completed\\\":false, \\\"taskTexts\\\":\\\"new\\\"}]\")");
    //}
 
-    private String makeGivenCommand(Task... tasks) {
+    private String makeGivenCommand(String... tasks) {
         String results = "localStorage.setItem(\"todos-troopjs\", \"[";
 
-        for (Task task : tasks) {
-            results += "{\"completed\":false," + \"taskTexts\":\"+ tasks +"\"}, ";
+        for (String task : tasks) {
+            results += "{\"completed\":false," + \\\"taskTexts\":\"+ tasks +"\"},";
         }
         if (tasks.length > 0) {
             results = results.substring(0, (results.length() - 2));
@@ -170,7 +170,7 @@ public class TodoMVCTest extends AtTodoMVCPageWithClearedDataAfterEachTest {
         return results;
     }
 
-    public void given(Task... tasks) {
+    public void given(String... tasks) {
         String jsCommand = makeGivenCommand(tasks);
         executeJavaScript(jsCommand);
         refresh();
