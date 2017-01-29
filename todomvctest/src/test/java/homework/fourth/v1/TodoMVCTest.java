@@ -12,8 +12,7 @@ import static com.codeborne.selenide.CollectionCondition.exactTexts;
 import static com.codeborne.selenide.Condition.cssClass;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 
@@ -22,7 +21,7 @@ public class TodoMVCTest extends AtTodoMVCPageWithClearedDataAfterEachTest {
     @Test
     public void testTasksLifeCycle() {
 
-        add("1");
+        given("1");
         toggle("1");
         assertTasks("1");
 
@@ -78,10 +77,6 @@ public class TodoMVCTest extends AtTodoMVCPageWithClearedDataAfterEachTest {
 
     ElementsCollection tasks = $$("#todo-list>li");
 
-    private void given (String ... taskTexts){
-
-        executeJavaScript(localStorage.setItem("todos-troopjs", "[{\"completed\":false, \"title\":\"new\"}]"));
-    }
 
     @Step
     private void assertNoTasks() {
@@ -155,5 +150,31 @@ public class TodoMVCTest extends AtTodoMVCPageWithClearedDataAfterEachTest {
     private void assertItemsLeft(int itemsLeftCount) {
         $("#todo-count>strong").shouldHave(exactText(Integer.toString(itemsLeftCount)));
     }
-}
 
+   private void given (String ... taskTexts){
+
+     executeJavaScript("localStorage.setItem(\"todos-troopjs\", \"[{\\\"completed\\\":false, \\\"taskTexts\\\":\\\"new\\\"},{\\\"completed\\\":false, \\\"taskTexts\\\":\\\"new\\\"}]\")");
+   }
+
+    private String makeGivenCommand(Task... tasks) {
+        String results = "localStorage.setItem(\"todos-troopjs\", \"[";
+
+        for (Task task : tasks) {
+            results += "{\"completed\":false," + \"taskTexts\":\"+ tasks +"\"}, ";
+        }
+        if (tasks.length > 0) {
+            results = results.substring(0, (results.length() - 2));
+        }
+        results = results + "]')";
+
+        System.out.println(results);
+        return results;
+    }
+
+    public void given(Task... tasks) {
+        String jsCommand = makeGivenCommand(tasks);
+        executeJavaScript(jsCommand);
+        refresh();
+    }
+
+}
