@@ -158,15 +158,15 @@ public class TodoMVCTest extends AtTodoMVCPageWithClearedDataAfterEachTest {
     private String makeGivenCommand(String... tasks) {
         String results = "localStorage.setItem(\"todos-troopjs\", \"[";
 
-        for (String task : tasks) {
-            results += "{\"completed\":false," + \\\"taskTexts\":\"+ tasks +"\"},";
+        for (String task : tasks) {// не понятна конструкция (String task : tasks)
+            results += "{\\\"completed\\\":false, \\\"taskTexts\\\":\\\"tasks\\\"},"; // тут tasks - не параметр, а значение строки
         }
         if (tasks.length > 0) {
             results = results.substring(0, (results.length() - 2));
         }
         results = results + "]')";
 
-        System.out.println(results);
+        System.out.println(results); 
         return results;
     }
 
