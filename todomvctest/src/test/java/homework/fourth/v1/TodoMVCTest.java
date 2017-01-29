@@ -159,7 +159,7 @@ public class TodoMVCTest extends AtTodoMVCPageWithClearedDataAfterEachTest {
         String results = "localStorage.setItem(\"todos-troopjs\", \"[";
 
         for (String task : tasks) {// не понятна конструкция (String task : tasks). Понимаю, что тут надо создать класс. Но как можно упростить для начала?
-            results += "{\\\"completed\\\":false, \\\"taskTexts\\\":\\\"tasks\\\"},"; // тут tasks - не параметр, а значение строки
+            results += "{\\\"completed\\\":false, \\\"taskTexts\\\":\\\"tasks\\\"},"; // тут tasks - не параметр, а значение строки. Вообщем в данном месте самые большие проблемы.
         }
         if (tasks.length > 0) {
             results = results.substring(0, (results.length() - 2));
