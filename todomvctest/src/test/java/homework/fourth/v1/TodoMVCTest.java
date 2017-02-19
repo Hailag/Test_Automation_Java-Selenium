@@ -22,7 +22,7 @@ public class TodoMVCTest extends AtTodoMVCPageWithClearedDataAfterEachTest {
     @Test
     public void testTasksLifeCycle() {
 
-        given(activeTask("1"));
+        add("1");
         toggle("1");
         assertTasks("1");
 
@@ -45,9 +45,7 @@ public class TodoMVCTest extends AtTodoMVCPageWithClearedDataAfterEachTest {
 
     @Test
     public void testEditAtAll() {
-        //given
         given(activeTask("1"), completedTask("2"));
-
         edit("2", "2 edited");
         assertTasks("1", "2 edited");
         assertItemsLeft(1);
@@ -55,9 +53,7 @@ public class TodoMVCTest extends AtTodoMVCPageWithClearedDataAfterEachTest {
 
     @Test
     public void testCancelEditAtAll() {
-        //given
-        add("1");
-
+        givenActive("1");
         cancelEdit("1", "edited");
         assertTasks("1");
         assertItemsLeft(1);
@@ -65,15 +61,19 @@ public class TodoMVCTest extends AtTodoMVCPageWithClearedDataAfterEachTest {
 
     @Test
     public void testDeleteAtCompleted() {
-        //given - completed tasks
-        add("1", "2");
-        toggleAll();
+        givenCompleted("1", "2");
         filterCompleted();
 
         delete("1");
         assertTasks("2");
         assertItemsLeft(0);
     }
+
+    @Test
+    public void test
+
+
+
 
 
     ElementsCollection tasks = $$("#todo-list>li");
@@ -152,16 +152,10 @@ public class TodoMVCTest extends AtTodoMVCPageWithClearedDataAfterEachTest {
         $("#todo-count>strong").shouldHave(exactText(Integer.toString(itemsLeftCount)));
     }
 
-   //private void given (String ... taskTexts){
-   //  executeJavaScript("localStorage.setItem(\"todos-troopjs\", \"[{\\\"completed\\\":false, \\\"taskTexts\\\":\\\"new\\\"},{\\\"completed\\\":false, \\\"taskTexts\\\":\\\"new\\\"}]\")");
-   //}
-
-
-
     private String makeGivenCommand(Task... tasks) {
         String results = "localStorage.setItem(\"todos-troopjs\", \"[";
 
-        for (Task task : tasks) {// не понятна конструкция (String taskText : taskTexts). Понимаю, что тут надо создать класс. Но как можно упростить для начала?
+        for (Task task : tasks) {
             results += "{\\\"completed\\\":"+ task.isCompleted +", \\\"title\\\":\\\"" + task.text + "\\\"} , ";
         }
         if (tasks.length > 0) {
@@ -177,6 +171,7 @@ public class TodoMVCTest extends AtTodoMVCPageWithClearedDataAfterEachTest {
         given(getTasks(false, taskTexts));
 
     }
+
     public void givenCompleted(String... taskTexts) {
 
         given(getTasks(true, taskTexts));
@@ -192,13 +187,11 @@ public class TodoMVCTest extends AtTodoMVCPageWithClearedDataAfterEachTest {
         return tasks;
     }
 
-
     public void given(Task... tasks) {
         String jsCommand = makeGivenCommand(tasks);
         executeJavaScript(jsCommand);
         refresh();
     }
-
 
     public static class Task {
         String text;
