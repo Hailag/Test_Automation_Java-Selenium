@@ -9,12 +9,11 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import static com.codeborne.selenide.CollectionCondition.empty;
 import static com.codeborne.selenide.CollectionCondition.exactTexts;
-import static com.codeborne.selenide.Condition.cssClass;
-import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
-import static homework.fourth.v1.TodoMVCTest.Task.*;
+import static homework.fourth.v1.TodoMVCTest.Task.activeTask;
+import static homework.fourth.v1.TodoMVCTest.Task.completedTask;
 
 
 public class TodoMVCTest extends AtTodoMVCPageWithClearedDataAfterEachTest {
@@ -70,7 +69,123 @@ public class TodoMVCTest extends AtTodoMVCPageWithClearedDataAfterEachTest {
     }
 
     @Test
-    public void test
+    public void testDeleteAtAll(){
+        givenActive("1");
+        filterAll();
+        delete("1");
+        assertNoTasks();
+    }
+
+    @Test
+    public void testAllCompleteAtAll(){
+        givenActive("1", "2");
+        toggleAll();
+        assertItemsLeft(0);
+    }
+
+    @Test
+    public void testClearCompleteAtAll () {
+        givenActive("1", "2");
+        toggleAll();
+        clearCompleted();
+        assertNoTasks();
+    }
+
+    @Test
+    public void testReopenAtAll () {
+        givenCompleted("1");
+        toggle("1");
+        assertTasks("1");
+        assertItemsLeft(1);
+    }
+
+    @Test
+    public void testReopenAllAtAll (){
+        givenCompleted("1", "2");
+        toggleAll();
+        assertTasks("1","2");
+        assertItemsLeft(2);
+    }
+
+    @Test
+    public void testEditAtActive (){
+        givenActive("1", "2");
+        filterActive();
+        edit("2", "2 edited");
+        assertTasks("1", "2 edited");
+        assertItemsLeft(2);
+    }
+
+    @Test
+    public void testDeleteAtActive(){
+        givenActive("1");
+        filterActive();
+        delete("1");
+        assertNoTasks();
+        assertItemsLeft(0);
+    }
+
+    @Test
+    public void testCompleteAtActive () {
+        givenActive("1", "2");
+        filterActive();
+        toggleAll();
+        assertItemsLeft(0);
+    }
+
+    @Test
+    public void testClearCompleteAtActive () {
+        givenActive("1");
+        filterActive();
+        toggle("1");
+        clearCompleted();
+        assertItemsLeft(0);
+    }
+
+    @Test
+    public void testReopenAllAtActive () {
+        givenCompleted("1", "2");
+        filterActive();
+        toggleAll();
+        assertItemsLeft(2);
+    }
+
+    @Test
+    public void testAddAtCompleted() {
+        givenCompleted("1");
+        filterCompleted();
+        add("2");
+        assertTasks("1");
+        assertItemsLeft(1);
+    }
+
+    @Test
+    public void testEditAtCompleted () {
+        givenCompleted("1", "2");
+        filterCompleted();
+        edit("2", "2 edit");
+        assertTasks("1", "2 edit");
+        assertItemsLeft(0);
+    }
+
+    @Test
+    public void testCompleteAllAtCompleted () {
+        givenCompleted("1", "2");
+        filterCompleted();
+        clearCompleted();
+        assertNoTasks();
+    }
+
+    @Test
+    public void testReopenAllToCompleted () {
+        givenCompleted("1");
+        filterCompleted();
+        toggleAll();
+        assertNoTasks();
+        assertItemsLeft(1);
+    }
+
+
 
 
 
