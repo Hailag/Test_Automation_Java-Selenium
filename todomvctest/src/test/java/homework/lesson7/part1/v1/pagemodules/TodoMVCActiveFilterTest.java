@@ -1,13 +1,8 @@
 package homework.lesson7.part1.v1.pagemodules;
 
-import homework.lesson7.part1.v1.pagemodules.pages.Tasks;
 import org.junit.Test;
-
 import static homework.lesson7.part1.v1.pagemodules.pages.Tasks.*;
 
-/**
- * Created by Homr on 2/26/2017.
- */
 public class TodoMVCActiveFilterTest {
     
     @Test
