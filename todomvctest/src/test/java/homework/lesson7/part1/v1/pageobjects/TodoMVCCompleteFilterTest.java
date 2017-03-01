@@ -37,10 +37,11 @@ public class TodoMVCCompleteFilterTest extends AtTodoMVCPageWithClearedDataAfter
 
     @Test
     public void testCompleteAllAtCompleted() {
-        page.givenCompleted("1", "2");
+        page.givenActive("1", "2");
         page.filterCompleted();
-        page.clearCompleted();
-        page.assertNoTasks();
+        page.toggleAll();
+        page.assertTasks("1","2");
+        page.assertItemsLeft(0);
     }
 
     @Test

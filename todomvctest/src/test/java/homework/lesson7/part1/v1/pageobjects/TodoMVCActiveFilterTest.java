@@ -47,6 +47,7 @@ public class TodoMVCActiveFilterTest extends AtTodoMVCPageWithClearedDataAfterEa
     public void testReopenAllAtActive() {
         page.givenCompleted("1", "2");
         page.filterActive();
+        page.assertNoTasks();
         page.toggleAll();
         page.assertItemsLeft(2);
     }
