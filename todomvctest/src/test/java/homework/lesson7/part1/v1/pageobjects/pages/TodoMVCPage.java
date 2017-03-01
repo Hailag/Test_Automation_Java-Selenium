@@ -12,7 +12,7 @@ import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 
-public class TodoMVCPage extends homework.class_toolkit.AtTodoMVCPageWithClearedDataAfterEachTest {
+public class TodoMVCPage {
 
     public ElementsCollection tasks = $$("#todo-list>li");
 

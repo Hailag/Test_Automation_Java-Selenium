@@ -1,12 +1,11 @@
 package homework.lesson7.part1.v1.pageobjects;
 
 import homework.lesson7.part1.v1.pageobjects.pages.TodoMVCPage;
+import homework.lesson7.part1.v1.pageobjects.testconfigs.AtTodoMVCPageWithClearedDataAfterEachTest;
 import org.junit.Test;
 
-/**
- * Created by Homr on 2/26/2017.
- */
-public class TodoMVCActiveFilterTest {
+
+public class TodoMVCActiveFilterTest extends AtTodoMVCPageWithClearedDataAfterEachTest {
     TodoMVCPage page = new TodoMVCPage();
 
     @Test

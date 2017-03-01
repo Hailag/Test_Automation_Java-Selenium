@@ -1,4 +1,4 @@
-package homework.class_toolkit;
+package homework.lesson7.part1.v1.pagemodules.testconfigs;
 
 import org.junit.After;
 import org.junit.Before;
@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.open;
 /**
  * Created by Homr on 2/26/2017.
  */
-public class AtTodoMVCPageWithClearedDataAfterEachTest extends homework.class_toolkit.BaseTest{
+public class AtTodoMVCPageWithClearedDataAfterEachTest extends BaseTest {
     @Before
     public void openPage() {
         open("https://todomvc4tasj.herokuapp.com/");

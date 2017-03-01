@@ -1,4 +1,4 @@
-package homework.class_toolkit;
+package homework.lesson7.part1.v1.pagemodules.testconfigs;
 
 import com.codeborne.selenide.Screenshots;
 import com.google.common.io.Files;

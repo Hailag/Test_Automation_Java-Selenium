@@ -1,9 +1,10 @@
 package homework.lesson7.part1.v1.pageobjects;
 
 import homework.lesson7.part1.v1.pageobjects.pages.TodoMVCPage;
+import homework.lesson7.part1.v1.pageobjects.testconfigs.AtTodoMVCPageWithClearedDataAfterEachTest;
 import org.junit.Test;
 
-public class TodoMVCCompleteFilterTest {
+public class TodoMVCCompleteFilterTest extends AtTodoMVCPageWithClearedDataAfterEachTest {
     TodoMVCPage page = new TodoMVCPage();
 
     @Test
