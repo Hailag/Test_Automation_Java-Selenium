@@ -11,6 +11,7 @@ import static com.codeborne.selenide.Condition.cssClass;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.WebDriverRunner.url;
 
 public class TodoMVCPage {
 
@@ -125,6 +126,9 @@ public class TodoMVCPage {
     }
 
     public void given(Task... tasks) {
+        if (!url().equals("https://todomvc4tasj.herokuapp.com/")){
+            open("https://todomvc4tasj.herokuapp.com/");
+        }
         String jsCommand = makeGivenCommand(tasks);
         executeJavaScript(jsCommand);
         refresh();

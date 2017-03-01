@@ -314,7 +314,6 @@ public class TodoMVCTest extends AtTodoMVCPageWithClearedDataAfterEachTest {
 
         public static Task activeTask (String text){
             return new Task(text, false);
-
         }
 
         public static Task completedTask (String text) {
