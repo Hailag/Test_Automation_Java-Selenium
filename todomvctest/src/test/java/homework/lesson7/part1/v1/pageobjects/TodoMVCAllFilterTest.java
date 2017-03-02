@@ -1,20 +1,19 @@
 package homework.lesson7.part1.v1.pageobjects;
 
 import homework.lesson7.part1.v1.pageobjects.pages.TodoMVCPage;
-import homework.lesson7.part1.v1.pageobjects.testconfigs.AtTodoMVCPageWithClearedDataAfterEachTest;
+import homework.lesson7.part1.v1.pageobjects.testconfigs.BaseTest;
 import org.junit.Test;
 
 
-public class TodoMVCAllFilterTest extends AtTodoMVCPageWithClearedDataAfterEachTest{
+public class TodoMVCAllFilterTest extends BaseTest{
     TodoMVCPage page = new TodoMVCPage();
 
     @Test
     public void testEditAtAll() {
-        page.givenActive("1");
-        page.givenCompleted("2");
+        page.givenActive("1", "2");
         page.edit("2", "2 edited");
         page.assertTasks("1", "2 edited");
-        page.assertItemsLeft(1);
+        page.assertItemsLeft(2);
     }
 
     @Test
