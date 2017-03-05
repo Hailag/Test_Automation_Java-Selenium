@@ -107,13 +107,10 @@ public class TodoMVCPage {
 
     public void givenActive(String... taskTexts) {
         given(getTasks(false, taskTexts));
-
     }
 
     public void givenCompleted(String... taskTexts) {
-
         given(getTasks(true, taskTexts));
-
     }
 
     public Task[] getTasks(boolean isCompleted, String... taskTexts) {
@@ -138,17 +135,36 @@ public class TodoMVCPage {
         String text;
         boolean isCompleted;
 
-        public static Task activeTask(String text) {
-            return new Task(text, false);
-        }
-
-        public static Task completedTask(String text) {
-            return new Task(text, true);
-        }
+//   Вопрос. Зачем нужна была данная реализация?
+//
+//        public static Task activeTask(String text) {
+//            return new Task(text, false);
+//        }
+//
+//        public static Task completedTask(String text) {
+//            return new Task(text, true);
+//        }
 
         public Task(String text, boolean isCompleted) {
             this.text = text;
             this.isCompleted = isCompleted;
+        }
+    }
+
+    public enum TaskStatus {
+        ACTIVE("$(By.linkText(\"Active\")).click()");
+        COMPLETED(" $(By.linkText(\"Completed\")).click();");
+        All ("filterAll");
+
+        public String status;
+
+        TaskStatus(String status) {
+            this.status = status;
+        }
+
+        @Override
+        public String toString() {
+            return status;
         }
     }
 }
