@@ -152,9 +152,8 @@ public class TodoMVCPage {
     }
 
     public enum TaskStatus {
-        ACTIVE("$(By.linkText(\"Active\")).click()");
-        COMPLETED(" $(By.linkText(\"Completed\")).click();");
-        All ("filterAll");
+        ACTIVE("false"),
+        COMPLETED("true");
 
         public String status;
 
