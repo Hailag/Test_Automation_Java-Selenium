@@ -3,6 +3,7 @@ package homework.lesson7.part1.v1.pageobjects;
 import homework.lesson7.part1.v1.pageobjects.pages.TodoMVCPage;
 import homework.lesson7.part1.v1.pageobjects.testconfigs.BaseTest;
 import org.junit.Test;
+import org.omg.PortableInterceptor.ACTIVE;
 
 
 public class TodoMVCAllFilterTest extends BaseTest{
@@ -10,7 +11,7 @@ public class TodoMVCAllFilterTest extends BaseTest{
 
     @Test
     public void testEditAtAll() {
-        page.givenActive("1", "2");
+        page.givenAtAll(ACTIVE,"1", "2"); // TODO
         page.edit("2", "2 edited");
         page.assertTasks("1", "2 edited");
         page.assertItemsLeft(2);

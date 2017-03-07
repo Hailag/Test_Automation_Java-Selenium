@@ -169,25 +169,21 @@ public class TodoMVCPage {
         }
     }
 
-    public void givenAtActive(Task... tasks) {
-        given(tasks);
-        filterActive();
-    }
 
     public void givenAtActive(TaskStatus status, String... taskTexts) {
-        given((status, taskTexts));
+        given(status, taskTexts);
         filterActive();
     }
 
 
-    public void givenAtCompleted(Task... tasks) {
-        given(tasks);
+    public void givenAtCompleted(TaskStatus status, String... taskTexts) {
+        given(status, taskTexts);
         filterCompleted();
     }
 
     public void givenAtAll (TaskStatus status, String... taskTexts){
-        given((status, taskTexts));
-        filterActive();
+        given(status, taskTexts);
+        filterAll();
     }
 
 
