@@ -5,6 +5,8 @@ import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 import ru.yandex.qatools.allure.annotations.Step;
 
+import java.util.Arrays;
+
 import static com.codeborne.selenide.CollectionCondition.empty;
 import static com.codeborne.selenide.CollectionCondition.exactTexts;
 import static com.codeborne.selenide.Condition.cssClass;
@@ -166,4 +168,28 @@ public class TodoMVCPage {
             return status;
         }
     }
+
+    public void givenAtActive(Task... tasks) {
+        given(tasks);
+        filterActive();
+    }
+
+    public void givenAtActive(TaskStatus status, String... taskTexts) {
+        given((status, taskTexts));
+        filterActive();
+    }
+
+
+    public void givenAtCompleted(Task... tasks) {
+        given(tasks);
+        filterCompleted();
+    }
+
+    public void givenAtAll (TaskStatus status, String... taskTexts){
+        given((status, taskTexts));
+        filterActive();
+    }
+
+
+
 }

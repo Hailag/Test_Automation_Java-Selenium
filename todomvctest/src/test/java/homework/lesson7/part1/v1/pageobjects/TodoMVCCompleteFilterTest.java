@@ -4,6 +4,9 @@ import homework.lesson7.part1.v1.pageobjects.testconfigs.BaseTest;
 import homework.lesson7.part1.v1.pageobjects.pages.TodoMVCPage;
 import org.junit.Test;
 
+import static homework.lesson7.part1.v1.pageobjects.pages.TodoMVCPage.*;
+import static homework.lesson7.part1.v1.pageobjects.pages.TodoMVCPage.TaskStatus.*;
+
 public class TodoMVCCompleteFilterTest extends BaseTest {
     TodoMVCPage page = new TodoMVCPage();
 
@@ -19,8 +22,7 @@ public class TodoMVCCompleteFilterTest extends BaseTest {
 
     @Test
     public void testAddAtCompleted() {
-        page.givenCompleted("1");
-        page.filterCompleted();
+        page.givenAtCompleted(COMPLETED, "1"); // Переделал
         page.add("2");
         page.assertTasks("1");
         page.assertItemsLeft(1);
