@@ -3,9 +3,10 @@ package homework.lesson7.part1.v1.pageobjects.pages;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
-import ru.yandex.qatools.allure.annotations.Step;
+import ru.yandex.qatools.allure.annotations.*;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+
 
 import static com.codeborne.selenide.CollectionCondition.empty;
 import static com.codeborne.selenide.CollectionCondition.exactTexts;
@@ -137,7 +138,7 @@ public class TodoMVCPage {
         String text;
         boolean isCompleted;
 
-//   Вопрос. Зачем нужна была данная реализация?
+//Вопрос. Зачем нужна была данная реализация?
 //
 //        public static Task activeTask(String text) {
 //            return new Task(text, false);
@@ -153,13 +154,13 @@ public class TodoMVCPage {
         }
     }
 
-    public enum TaskStatus {
+    public enum TaskType {
         ACTIVE("false"),
         COMPLETED("true");
 
         public String status;
 
-        TaskStatus(String status) {
+        TaskType(String status) {
             this.status = status;
         }
 
@@ -170,20 +171,32 @@ public class TodoMVCPage {
     }
 
 
-    public void givenAtActive(TaskStatus status, String... taskTexts) {
-        given(status, taskTexts);
+    public void givenAtActive(TaskType taskType, String... taskTexts) {
+        given(tasksWithType(taskType, taskTexts));
         filterActive();
     }
 
-
-    public void givenAtCompleted(TaskStatus status, String... taskTexts) {
-        given(status, taskTexts);
+    public void givenAtCompleted(TaskType taskType, String... taskTexts) {
+        given(tasksWithType(taskType, taskTexts));
         filterCompleted();
     }
 
-    public void givenAtAll (TaskStatus status, String... taskTexts){
-        given(status, taskTexts);
+    public void givenAtAll (TaskType taskType, String... taskTexts){
+        given(tasksWithType(taskType, taskTexts));
         filterAll();
+    }
+
+    public Task[] tasksWithType(TaskType status, String... taskTexts) {
+        ArrayList<Task> tasks = new ArrayList<Task>();
+        for (String taskText : taskTexts) {
+            tasks.add(aTask(status, taskText));
+        }
+        return tasks.toArray(new Task[tasks.size()]);
+    }
+
+    public Task aTask(TaskType taskType, String taskText) {
+        Task aTask = new Task(taskType, taskText);
+        return aTask;
     }
 
 
