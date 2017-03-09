@@ -1,22 +1,21 @@
-package nw2.Task2;
+package nw2.Task2.Task2;
 
 public class Car {
     private int year;
     private String color;
 
-    public int getYear() {
-        return year;
-    }
+   public Car () {
+       year = 2000;
+       color = "red";
+   }
 
-    public void setYear(int year) {
-        this.year = year;
-    }
+   public Car (int year) {
+       this.year=year;
+       color="blue";
+   }
 
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
+   public Car (int year, String color){
+       this.year=year;
+       this.color=color;
+   }
 }
