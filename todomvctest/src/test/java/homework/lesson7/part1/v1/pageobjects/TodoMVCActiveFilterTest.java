@@ -4,8 +4,6 @@ import homework.lesson7.part1.v1.pageobjects.pages.TodoMVCPage;
 import homework.lesson7.part1.v1.pageobjects.testconfigs.BaseTest;
 import org.junit.Test;
 
-import static homework.lesson7.part1.v1.pageobjects.pages.TodoMVCPage.TaskStatus.*;
-
 
 public class TodoMVCActiveFilterTest extends BaseTest {
     TodoMVCPage page = new TodoMVCPage();
