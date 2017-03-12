@@ -5,8 +5,6 @@ import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 import ru.yandex.qatools.allure.annotations.*;
 
-import java.util.ArrayList;
-
 import static com.codeborne.selenide.CollectionCondition.empty;
 import static com.codeborne.selenide.CollectionCondition.exactTexts;
 import static com.codeborne.selenide.Condition.cssClass;
@@ -96,7 +94,7 @@ public class TodoMVCPage {
         String results = "localStorage.setItem(\"todos-troopjs\", \"[";
 
         for (Task task : tasks) {
-            results += "{\\\"completed\\\":" + task.isCompleted + ", \\\"title\\\":\\\"" + task.text + "\\\"} , ";
+            results += task + ", ";
         }
         if (tasks.length > 0) {
             results = results.substring(0, (results.length() - 2));
@@ -107,19 +105,12 @@ public class TodoMVCPage {
         return results;
     }
 
-    public void givenActive(String... taskTexts) {
-        given(getTasks(false, taskTexts));
-    }
 
-    public void givenCompleted(String... taskTexts) {
-        given(getTasks(true, taskTexts));
-    }
-
-    public Task[] getTasks(boolean isCompleted, String... taskTexts) { // Переделать
-        Task[] tasks = new Task[taskTexts.length];
+    public Task[] getTasks(TaskType taskType, String... taskTexts) {
+        Task [] tasks = new Task[taskTexts.length];
 
         for (int i = 0; i < taskTexts.length; i++) {
-            tasks[i] = new Task(taskTexts[i], isCompleted);
+            tasks[i] = aTask(taskType, taskTexts[i]);
         }
         return tasks;
     }
@@ -133,23 +124,19 @@ public class TodoMVCPage {
         refresh();
     }
 
-    public static class Task { // Переделать
+    public static class Task {
         String text;
-        boolean isCompleted;
+        TaskType type;
 
-//Вопрос. Зачем нужна была данная реализация?
-//
-//        public static Task activeTask(String text) {
-//            return new Task(text, false);
-//        }
-//
-//        public static Task completedTask(String text) {
-//            return new Task(text, true);
-//        }
+        @Override
+        public String toString() {
+            return "{\\\"completed\\\":" + this.type + ", \\\"title\\\":\\\"" + this.text + "\\\"}";
+        }
 
-        public Task(String text, boolean isCompleted) {
+
+        public Task(TaskType type, String text) {
             this.text = text;
-            this.isCompleted = isCompleted;
+            this.type = type;
         }
     }
 
@@ -171,21 +158,31 @@ public class TodoMVCPage {
 
 
     public void givenAtActive(TaskType taskType, String... taskTexts) {
-        given(...(taskType, taskTexts));
+        given(getTasks(taskType, taskTexts));
+        filterActive();
+    }
+
+    public void givenAtActive(Task... tasks) {
+        given(tasks);
         filterActive();
     }
 
     public void givenAtCompleted(TaskType taskType, String... taskTexts) {
-        given(...(taskType, taskTexts));
+        given(getTasks(taskType, taskTexts));
         filterCompleted();
     }
 
     public void givenAtAll (TaskType taskType, String... taskTexts){
-        given(...(taskType, taskTexts));
+        given(getTasks(taskType, taskTexts));
         filterAll();
     }
 
-    //TODO Что за метод aTask (упоминался в последней ревью)?
+    public Task aTask (TaskType type, String text){
+        return new Task(type, text);
+    }
+
+
+
 
    }
 
