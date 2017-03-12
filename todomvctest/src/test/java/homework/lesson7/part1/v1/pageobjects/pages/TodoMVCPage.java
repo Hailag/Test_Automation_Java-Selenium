@@ -7,7 +7,6 @@ import ru.yandex.qatools.allure.annotations.*;
 
 import java.util.ArrayList;
 
-
 import static com.codeborne.selenide.CollectionCondition.empty;
 import static com.codeborne.selenide.CollectionCondition.exactTexts;
 import static com.codeborne.selenide.Condition.cssClass;
@@ -186,8 +185,8 @@ public class TodoMVCPage {
         filterAll();
     }
 
-    public Task[] tasksWithType(TaskType status, String... taskTexts) {
-        ArrayList<Task> tasks = new ArrayList<Task>();
+    public Task [] tasksWithType(TaskType status, String... taskTexts) {
+        ArrayList <Task> tasks = new ArrayList<>();
         for (String taskText : taskTexts) {
             tasks.add(aTask(status, taskText));
         }
