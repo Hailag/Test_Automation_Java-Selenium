@@ -115,7 +115,7 @@ public class TodoMVCPage {
         given(getTasks(true, taskTexts));
     }
 
-    public Task[] getTasks(boolean isCompleted, String... taskTexts) {
+    public Task[] getTasks(boolean isCompleted, String... taskTexts) { // Переделать
         Task[] tasks = new Task[taskTexts.length];
 
         for (int i = 0; i < taskTexts.length; i++) {
@@ -133,7 +133,7 @@ public class TodoMVCPage {
         refresh();
     }
 
-    public static class Task {
+    public static class Task { // Переделать
         String text;
         boolean isCompleted;
 
@@ -157,47 +157,33 @@ public class TodoMVCPage {
         ACTIVE("false"),
         COMPLETED("true");
 
-        public String status;
+        public String type;
 
-        TaskType(String status) {
-            this.status = status;
+        TaskType(String type) {
+            this.type = type;
         }
 
         @Override
         public String toString() {
-            return status;
+            return type;
         }
     }
 
 
     public void givenAtActive(TaskType taskType, String... taskTexts) {
-        given(tasksWithType(taskType, taskTexts));
+        given(...(taskType, taskTexts));
         filterActive();
     }
 
     public void givenAtCompleted(TaskType taskType, String... taskTexts) {
-        given(tasksWithType(taskType, taskTexts));
+        given(...(taskType, taskTexts));
         filterCompleted();
     }
 
     public void givenAtAll (TaskType taskType, String... taskTexts){
-        given(tasksWithType(taskType, taskTexts));
+        given(...(taskType, taskTexts));
         filterAll();
     }
 
-    public Task [] tasksWithType(TaskType status, String... taskTexts) {
-        ArrayList <Task> tasks = new ArrayList<>();
-        for (String taskText : taskTexts) {
-            tasks.add(aTask(status, taskText));
-        }
-        return tasks.toArray(new Task[tasks.size()]);
-    }
+   }
 
-    public Task aTask(TaskType taskType, String taskText) {
-        Task aTask = new Task(taskType, taskText);
-        return aTask;
-    }
-
-
-
-}
