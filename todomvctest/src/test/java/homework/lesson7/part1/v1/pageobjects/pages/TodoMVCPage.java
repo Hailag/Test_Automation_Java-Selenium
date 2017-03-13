@@ -107,7 +107,7 @@ public class TodoMVCPage {
 
 
     public Task[] getTasks(TaskType taskType, String... taskTexts) {
-        Task [] tasks = new Task[taskTexts.length];
+        Task[] tasks = new Task[taskTexts.length];
 
         for (int i = 0; i < taskTexts.length; i++) {
             tasks[i] = aTask(taskType, taskTexts[i]);
@@ -116,7 +116,7 @@ public class TodoMVCPage {
     }
 
     public void given(Task... tasks) {
-        if (!url().equals("https://todomvc4tasj.herokuapp.com/")){
+        if (!url().equals("https://todomvc4tasj.herokuapp.com/")) {
             open("https://todomvc4tasj.herokuapp.com/");
         }
         String jsCommand = makeGivenCommand(tasks);
@@ -162,7 +162,7 @@ public class TodoMVCPage {
         filterActive();
     }
 
-    public void givenAtActive(Task... tasks) {
+    public void givenAtActive(Task... tasks) { // используем в случае если на надо создать 2 таски (1 активная, 2 закомпличенная)
         given(tasks);
         filterActive();
     }
@@ -172,17 +172,24 @@ public class TodoMVCPage {
         filterCompleted();
     }
 
-    public void givenAtAll (TaskType taskType, String... taskTexts){
+    public void givenAtCompleted(Task... tasks) {
+        given(tasks);
+        filterActive();
+    }
+
+    public void givenAtAll(TaskType taskType, String... taskTexts) {
         given(getTasks(taskType, taskTexts));
         filterAll();
     }
 
-    public Task aTask (TaskType type, String text){
+    public void givenAtAll(Task... tasks) {
+        given(tasks);
+        filterActive();
+    }
+
+    public Task aTask(TaskType type, String text) {
         return new Task(type, text);
     }
 
-
-
-
-   }
+}
 
