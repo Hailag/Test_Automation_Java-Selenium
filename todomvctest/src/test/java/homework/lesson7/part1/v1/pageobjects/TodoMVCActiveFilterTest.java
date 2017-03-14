@@ -62,5 +62,14 @@ public class TodoMVCActiveFilterTest extends BaseTest {
         page.assertItemsLeft(1);
     }
 
+    @Test
+    public void testSwitchFromActiveToCompleted() {
+        page.givenAtActive(page.aTask(ACTIVE, "1"), page.aTask(COMPLETED, "2"));
+
+        page.filterCompleted();
+        page.assertTasks( "2");
+        page.assertItemsLeft(1);
+    }
+
 }
 
