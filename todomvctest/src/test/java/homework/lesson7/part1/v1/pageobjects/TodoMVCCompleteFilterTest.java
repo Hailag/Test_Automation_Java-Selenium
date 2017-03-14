@@ -55,6 +55,15 @@ public class TodoMVCCompleteFilterTest extends BaseTest {
     }
 
     @Test
+    public void deleteByClearTextAtCompleted() {
+        page.givenAtCompleted(COMPLETED, "1", "2");
+
+        page.edit("2", "");
+        page.assertTasks("1");
+        page.assertItemsLeft(0);
+    }
+
+    @Test
     public void testSwitchFromCompletedToAll() {
         page.givenAtCompleted(page.aTask(ACTIVE, "1"), page.aTask(COMPLETED, "2"));
 

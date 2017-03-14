@@ -54,6 +54,24 @@ public class TodoMVCActiveFilterTest extends BaseTest {
     }
 
     @Test
+    public void testCancelEditAtActive() {
+        page.givenAtActive(page.aTask(ACTIVE, "1"), page.aTask(COMPLETED, "2"));
+
+        page.cancelEdit("1", "1 edited");
+        page.assertTasks("1");
+        page.assertItemsLeft(1);
+    }
+
+    @Test
+    public void testEditByTABAtActive() {
+        page.givenAtActive(page.aTask(ACTIVE, "1"), page.aTask(COMPLETED, "2"));
+
+        page.editByTab("1", "1 edited");
+        page.assertTasks("1 edited");
+        page.assertItemsLeft(1);
+    }
+
+    @Test
     public void testSwitchFromActiveToAll() {
         page.givenAtActive(page.aTask(ACTIVE, "1"), page.aTask(COMPLETED, "2"));
 

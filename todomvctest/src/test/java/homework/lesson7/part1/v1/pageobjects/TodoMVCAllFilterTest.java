@@ -64,6 +64,24 @@ public class TodoMVCAllFilterTest extends BaseTest{
     }
 
     @Test
+    public void testCancelEditByEscAtAll() {
+        page.givenAtAll(page.aTask(ACTIVE, "1"), page.aTask(COMPLETED, "2"));
+
+        page.cancelEdit("2", "2 edited");
+        page.assertTasks("1", "2");
+        page.assertItemsLeft(1);
+    }
+
+    @Test
+    public void editByClickOutOfTaskAtAll() {
+        page.givenAtAll(ACTIVE, "1", "2");
+
+        page.editByClickOutOfTask("2", "2 edited");
+        page.assertTasks("1", "2 edited");
+        page.assertItemsLeft(2);
+    }
+
+    @Test
     public void testSwitchFromAllToCompleted() {
         page.givenAtAll(page.aTask(ACTIVE, "1"), page.aTask(COMPLETED, "2"));
 
@@ -71,4 +89,6 @@ public class TodoMVCAllFilterTest extends BaseTest{
         page.assertTasks( "2");
         page.assertItemsLeft(1);
     }
+
+
 }

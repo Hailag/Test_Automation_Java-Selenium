@@ -66,6 +66,17 @@ public class TodoMVCPage {
     }
 
     @Step
+    public void editByTab(String oldTaskText, String newTaskText) {
+        startEdit(oldTaskText, newTaskText).pressTab();
+    }
+
+    @Step
+    public void editByClickOutOfTask(String oldTaskText, String newTaskText) {
+        startEdit(oldTaskText, newTaskText);
+        $("#header h1").click(); // Можно ли кликнуть на пустое поле?
+    }
+
+    @Step
     public void delete(String taskText) {
         tasks.find(exactText(taskText)).hover().$(".destroy").click();
     }
@@ -174,7 +185,7 @@ public class TodoMVCPage {
 
     public void givenAtCompleted(Task... tasks) {
         given(tasks);
-        filterActive();
+        filterCompleted();
     }
 
     public void givenAtAll(TaskType taskType, String... taskTexts) {
@@ -184,7 +195,7 @@ public class TodoMVCPage {
 
     public void givenAtAll(Task... tasks) {
         given(tasks);
-        filterActive();
+        filterAll();
     }
 
     public Task aTask(TaskType type, String text) {
