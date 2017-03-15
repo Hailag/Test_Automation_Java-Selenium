@@ -7,7 +7,7 @@ import static com.codeborne.selenide.Selenide.executeJavaScript;
 import static com.codeborne.selenide.Selenide.open;
 
 
-public class AtTodoMVCPageWithClearedDataAfterEachTest extends homework.third.v3.BaseTest{
+public class AtTodoMVCPageWithClearedDataAfterEachTest extends BaseTest{
     @Before
     public void openPage() {
         open("https://todomvc4tasj.herokuapp.com/");
