@@ -1,14 +1,16 @@
 package homework.lesson7.part1.v1.pagemodules;
 
 import org.junit.Test;
-import static homework.lesson7.part1.v1.pagemodules.pages.Tasks.*;
+
+import static homework.lesson7.part1.v1.pagemodules.pages.TodoMVCPage.TaskType.*;
+import static homework.lesson7.part1.v1.pagemodules.pages.TodoMVCPage.*;
+
 
 public class TodoMVCCompleteFilterTest {
-   
+
     @Test
     public void testDeleteAtCompleted() {
-        givenCompleted("1", "2");
-        filterCompleted();
+        givenAtCompleted(COMPLETED,"1", "2");
 
         delete("1");
         assertTasks("2");
@@ -17,8 +19,7 @@ public class TodoMVCCompleteFilterTest {
 
     @Test
     public void testAddAtCompleted() {
-        givenCompleted("1");
-        filterCompleted();
+        givenAtCompleted(COMPLETED, "1");
         add("2");
         assertTasks("1");
         assertItemsLeft(1);
@@ -26,8 +27,8 @@ public class TodoMVCCompleteFilterTest {
 
     @Test
     public void testEditAtCompleted() {
-        givenCompleted("1", "2");
-        filterCompleted();
+        givenAtCompleted(COMPLETED, "1", "2");
+
         edit("2", "2 edit");
         assertTasks("1", "2 edit");
         assertItemsLeft(0);
@@ -35,18 +36,46 @@ public class TodoMVCCompleteFilterTest {
 
     @Test
     public void testCompleteAllAtCompleted() {
-        givenCompleted("1", "2");
-        filterCompleted();
-        clearCompleted();
-        assertNoTasks();
+        givenAtCompleted(COMPLETED, "1", "2");
+
+        toggleAll();
+        assertTasks("1","2");
+        assertItemsLeft(0);
     }
 
     @Test
     public void testReopenAllToCompleted() {
-        givenCompleted("1");
-        filterCompleted();
+        givenAtCompleted(COMPLETED, "1");
+
         toggleAll();
         assertNoTasks();
+        assertItemsLeft(1);
+    }
+
+    @Test
+    public void deleteByClearTextAtCompleted() {
+        givenAtCompleted(COMPLETED, "1", "2");
+
+        edit("2", "");
+        assertTasks("1");
+        assertItemsLeft(0);
+    }
+
+    @Test
+    public void testSwitchFromCompletedToAll() {
+        givenAtCompleted(aTask(ACTIVE, "1"), aTask(COMPLETED, "2"));
+
+        filterAll();
+        assertTasks( "1", "2");
+        assertItemsLeft(1);
+    }
+
+    @Test
+    public void testSwitchFromCompletedToActive() {
+        givenAtCompleted(aTask(ACTIVE, "1"), aTask(COMPLETED, "2"));
+
+        filterActive();
+        assertTasks( "1");
         assertItemsLeft(1);
     }
 }

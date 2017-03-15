@@ -1,9 +1,10 @@
 package homework.lesson7.part1.v1.pagemodules;
 
+import homework.lesson7.part1.v1.pagemodules.testconfigs.AtTodoMVCPageWithClearedDataAfterEachTest;
 import org.junit.Test;
-import static homework.lesson7.part1.v1.pagemodules.pages.Tasks.*;
+import static homework.lesson7.part1.v1.pagemodules.pages.TodoMVCPage.*;
 
-public class TodoMVCEndToEndTest {
+public class TodoMVCEndToEndTest extends AtTodoMVCPageWithClearedDataAfterEachTest {
 
     @Test
     public void testTasksLifeCycle() {
