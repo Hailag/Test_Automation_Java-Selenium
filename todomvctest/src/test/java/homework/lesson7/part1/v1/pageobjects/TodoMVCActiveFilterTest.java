@@ -10,7 +10,7 @@ public class TodoMVCActiveFilterTest extends BaseTest {
     TodoMVCPage page = new TodoMVCPage();
 
     @Test
-    public void testEditAtActive() {
+    public void testEdit() {
         page.givenAtActive(ACTIVE,"1", "2");
 
         page.edit("2", "2 edited");
@@ -19,7 +19,7 @@ public class TodoMVCActiveFilterTest extends BaseTest {
     }
 
     @Test
-    public void testDeleteAtActive() {
+    public void testDelete() {
         page.givenAtActive(ACTIVE, "1", "2");
 
         page.delete("2");
@@ -29,32 +29,25 @@ public class TodoMVCActiveFilterTest extends BaseTest {
 
 
     @Test
-    public void testCompleteAtActive() {
+    public void testComplete() {
         page.givenAtActive(ACTIVE,"1", "2");
 
         page.toggleAll();
         page.assertItemsLeft(0);
+        // TODO Проверить состояние тасок.
     }
 
     @Test
-    public void testClearCompleteAtActive() { //Исправить
+    public void testClearComplete() { //Исправить
         page.givenAtActive(ACTIVE, "1");
 
         page.clearCompleted();
         page.assertNoTasks();
     }
 
-    @Test
-    public void testReopenAllAtActive() {
-        page.givenAtActive(COMPLETED,"1", "2");
-
-        page.assertNoTasks();
-        page.toggleAll();
-        page.assertItemsLeft(2);
-    }
 
     @Test
-    public void testCancelEditAtActive() {
+    public void testCancelEdit() {
         page.givenAtActive(page.aTask(ACTIVE, "1"), page.aTask(COMPLETED, "2"));
 
         page.cancelEdit("1", "1 edited");
@@ -63,7 +56,7 @@ public class TodoMVCActiveFilterTest extends BaseTest {
     }
 
     @Test
-    public void testEditByTABAtActive() {
+    public void testEditByTAB() {
         page.givenAtActive(page.aTask(ACTIVE, "1"), page.aTask(COMPLETED, "2"));
 
         page.editByTab("1", "1 edited");
@@ -77,15 +70,6 @@ public class TodoMVCActiveFilterTest extends BaseTest {
 
         page.filterAll();
         page.assertTasks("1", "2");
-        page.assertItemsLeft(1);
-    }
-
-    @Test
-    public void testSwitchFromActiveToCompleted() {
-        page.givenAtActive(page.aTask(ACTIVE, "1"), page.aTask(COMPLETED, "2"));
-
-        page.filterCompleted();
-        page.assertTasks( "2");
         page.assertItemsLeft(1);
     }
 

@@ -10,7 +10,7 @@ public class TodoMVCAllFilterTest extends BaseTest{
     TodoMVCPage page = new TodoMVCPage();
 
     @Test
-    public void testEditAtAll() {
+    public void testEdit() {
         page.givenAtAll(ACTIVE,"1", "2");
         page.edit("2", "2 edited");
         page.assertTasks("1", "2 edited");
@@ -18,7 +18,7 @@ public class TodoMVCAllFilterTest extends BaseTest{
     }
 
     @Test
-    public void testCancelEditAtAll() {
+    public void testCancelEdit() {
         page.givenAtAll(ACTIVE,"1");
         page.cancelEdit("1", "edited");
         page.assertTasks("1");
@@ -26,21 +26,21 @@ public class TodoMVCAllFilterTest extends BaseTest{
     }
 
     @Test
-    public void testDeleteAtAll() {
+    public void testDelete() {
         page.givenAtAll(ACTIVE,"1");
 
         page.delete("1");
         page.assertNoTasks();
     }
     @Test
-    public void testAllCompleteAtAll() {
+    public void testAllComplete() {
         page.givenAtAll(ACTIVE,"1", "2");
         page.toggleAll();
         page.assertItemsLeft(0);
     }
 
     @Test
-    public void testClearCompleteAtAll() {
+    public void testClearComplete() {
         page.givenAtAll(ACTIVE,"1", "2");
         page.toggleAll();
         page.clearCompleted();
@@ -48,23 +48,16 @@ public class TodoMVCAllFilterTest extends BaseTest{
     }
 
     @Test
-    public void testReopenAtAll() {
+    public void testReopen() {
         page.givenAtAll(COMPLETED,"1");
         page.toggle("1");
         page.assertTasks("1");
         page.assertItemsLeft(1);
     }
 
-    @Test
-    public void testReopenAllAtAll() {
-        page.givenAtAll(COMPLETED,"1", "2");
-        page.toggleAll();
-        page.assertTasks("1", "2");
-        page.assertItemsLeft(2);
-    }
 
     @Test
-    public void testCancelEditByEscAtAll() {
+    public void testCancelEditByEsc() {
         page.givenAtAll(page.aTask(ACTIVE, "1"), page.aTask(COMPLETED, "2"));
 
         page.cancelEdit("2", "2 edited");
@@ -73,7 +66,7 @@ public class TodoMVCAllFilterTest extends BaseTest{
     }
 
     @Test
-    public void editByClickOutOfTaskAtAll() {
+    public void editByClickOutOfTask() {
         page.givenAtAll(ACTIVE, "1", "2");
 
         page.editByClickOutOfTask("2", "2 edited");

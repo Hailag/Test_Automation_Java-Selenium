@@ -10,8 +10,9 @@ import static homework.lesson7.part1.v1.pageobjects.pages.TodoMVCPage.TaskType.*
 public class TodoMVCCompleteFilterTest extends BaseTest {
     TodoMVCPage page = new TodoMVCPage();
 
+    //TODO Проверять состояние тасок
     @Test
-    public void testDeleteAtCompleted() {
+    public void testDelete() {
         page.givenAtCompleted(COMPLETED,"1", "2");
 
         page.delete("1");
@@ -19,16 +20,9 @@ public class TodoMVCCompleteFilterTest extends BaseTest {
         page.assertItemsLeft(0);
     }
 
-    @Test
-    public void testAddAtCompleted() {
-        page.givenAtCompleted(COMPLETED, "1");
-        page.add("2");
-        page.assertTasks("1");
-        page.assertItemsLeft(1);
-    }
 
     @Test
-    public void testEditAtCompleted() {
+    public void testEdit() {
         page.givenAtCompleted(COMPLETED, "1", "2");
 
         page.edit("2", "2 edit");
@@ -36,17 +30,9 @@ public class TodoMVCCompleteFilterTest extends BaseTest {
         page.assertItemsLeft(0);
     }
 
-    @Test
-    public void testCompleteAllAtCompleted() {
-        page.givenAtCompleted(COMPLETED, "1", "2");
-
-        page.toggleAll();
-        page.assertTasks("1","2");
-        page.assertItemsLeft(0);
-    }
 
     @Test
-    public void testReopenAllToCompleted() {
+    public void testReopenAll() {
         page.givenAtCompleted(COMPLETED, "1");
 
         page.toggleAll();
@@ -55,7 +41,7 @@ public class TodoMVCCompleteFilterTest extends BaseTest {
     }
 
     @Test
-    public void deleteByClearTextAtCompleted() {
+    public void deleteByClearText() {
         page.givenAtCompleted(COMPLETED, "1", "2");
 
         page.edit("2", "");
