@@ -11,20 +11,19 @@ public class TodoMVCActiveFilterTest extends BaseTest {
 
     @Test
     public void testEdit() {
-        page.givenAtActive(ACTIVE,"1", "2");
+        page.givenAtActive(ACTIVE, "1");
 
-        page.edit("2", "2 edited");
-        page.assertTasks("1", "2 edited");
-        page.assertItemsLeft(2);
+        page.edit("1", "1 edited");
+        page.assertTasks( "1 edited");
+        page.assertItemsLeft(1);
     }
 
     @Test
     public void testDelete() {
-        page.givenAtActive(ACTIVE, "1", "2");
+        page.givenAtActive(ACTIVE, "1");
 
-        page.delete("2");
-        page.assertTasks("1");
-        page.assertItemsLeft(1);
+        page.delete("1");
+        page.assertNoTasks();
     }
 
 
@@ -33,16 +32,18 @@ public class TodoMVCActiveFilterTest extends BaseTest {
         page.givenAtActive(ACTIVE,"1", "2");
 
         page.toggleAll();
+        page.assertNoTasks();
         page.assertItemsLeft(0);
-        // TODO Проверить состояние тасок.
+
     }
 
     @Test
-    public void testClearComplete() { //Исправить
-        page.givenAtActive(ACTIVE, "1");
+    public void testClearComplete() {
+        page.givenAtActive(page.aTask(ACTIVE, "1"), page.aTask(COMPLETED, "2"), page.aTask(COMPLETED, "3"));
 
         page.clearCompleted();
-        page.assertNoTasks();
+        page.assertTasks("1");
+        page.assertItemsLeft(1);
     }
 
 
@@ -66,11 +67,11 @@ public class TodoMVCActiveFilterTest extends BaseTest {
 
     @Test
     public void testSwitchFromActiveToAll() {
-        page.givenAtActive(page.aTask(ACTIVE, "1"), page.aTask(COMPLETED, "2"));
+        page.givenAtActive(ACTIVE, "1", "2");
 
         page.filterAll();
         page.assertTasks("1", "2");
-        page.assertItemsLeft(1);
+        page.assertItemsLeft(2);
     }
 
 }

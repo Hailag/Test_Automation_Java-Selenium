@@ -10,7 +10,7 @@ import static homework.lesson7.part1.v1.pageobjects.pages.TodoMVCPage.TaskType.*
 public class TodoMVCCompleteFilterTest extends BaseTest {
     TodoMVCPage page = new TodoMVCPage();
 
-    //TODO Проверять состояние тасок
+
     @Test
     public void testDelete() {
         page.givenAtCompleted(COMPLETED,"1", "2");
@@ -19,7 +19,6 @@ public class TodoMVCCompleteFilterTest extends BaseTest {
         page.assertTasks("2");
         page.assertItemsLeft(0);
     }
-
 
     @Test
     public void testEdit() {
@@ -49,13 +48,14 @@ public class TodoMVCCompleteFilterTest extends BaseTest {
         page.assertItemsLeft(0);
     }
 
+
     @Test
     public void testSwitchFromCompletedToAll() {
-        page.givenAtCompleted(page.aTask(ACTIVE, "1"), page.aTask(COMPLETED, "2"));
+        page.givenAtCompleted(COMPLETED, "1");
 
         page.filterAll();
-        page.assertTasks( "1", "2");
-        page.assertItemsLeft(1);
+        page.assertTasks( "1");
+        page.assertItemsLeft(0);
     }
 
     @Test

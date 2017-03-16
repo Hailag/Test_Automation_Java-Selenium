@@ -11,15 +11,17 @@ public class TodoMVCAllFilterTest extends BaseTest{
 
     @Test
     public void testEdit() {
-        page.givenAtAll(ACTIVE,"1", "2");
+        page.givenAtAll(page.aTask(ACTIVE, "1"), page.aTask(COMPLETED, "2"));
+
         page.edit("2", "2 edited");
         page.assertTasks("1", "2 edited");
-        page.assertItemsLeft(2);
+        page.assertItemsLeft(1);
     }
 
     @Test
     public void testCancelEdit() {
-        page.givenAtAll(ACTIVE,"1");
+        page.givenAtAll(ACTIVE, "1");
+
         page.cancelEdit("1", "edited");
         page.assertTasks("1");
         page.assertItemsLeft(1);
@@ -27,29 +29,34 @@ public class TodoMVCAllFilterTest extends BaseTest{
 
     @Test
     public void testDelete() {
-        page.givenAtAll(ACTIVE,"1");
+        page.givenAtAll(page.aTask(ACTIVE, "1"), page.aTask(COMPLETED, "2"));
 
         page.delete("1");
-        page.assertNoTasks();
+        page.assertTasks("2");
+        page.assertItemsLeft(0);
     }
     @Test
     public void testAllComplete() {
         page.givenAtAll(ACTIVE,"1", "2");
+
         page.toggleAll();
+        page.assertTasks("1", "2");
         page.assertItemsLeft(0);
     }
 
     @Test
     public void testClearComplete() {
-        page.givenAtAll(ACTIVE,"1", "2");
-        page.toggleAll();
+        page.givenAtAll(COMPLETED, "1","2");
+
         page.clearCompleted();
         page.assertNoTasks();
+
     }
 
     @Test
     public void testReopen() {
         page.givenAtAll(COMPLETED,"1");
+
         page.toggle("1");
         page.assertTasks("1");
         page.assertItemsLeft(1);
