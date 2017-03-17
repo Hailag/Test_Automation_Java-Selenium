@@ -40,7 +40,7 @@ public class TodoMVCCompleteFilterTest extends BaseTest {
     }
 
     @Test
-    public void deleteByClearText() {
+    public void testDeleteByClear() {
         page.givenAtCompleted(COMPLETED, "1", "2");
 
         page.edit("2", "");
@@ -48,15 +48,6 @@ public class TodoMVCCompleteFilterTest extends BaseTest {
         page.assertItemsLeft(0);
     }
 
-
-    @Test
-    public void testSwitchFromCompletedToAll() {
-        page.givenAtCompleted(COMPLETED, "1");
-
-        page.filterAll();
-        page.assertTasks( "1");
-        page.assertItemsLeft(0);
-    }
 
     @Test
     public void testSwitchFromCompletedToActive() {

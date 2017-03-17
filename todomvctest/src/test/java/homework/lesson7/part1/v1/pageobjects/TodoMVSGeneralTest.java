@@ -1,23 +1,24 @@
 package homework.lesson7.part1.v1.pageobjects;
 
 import homework.lesson7.part1.v1.pageobjects.pages.TodoMVCPage;
-import homework.lesson7.part1.v1.pageobjects.testconfigs.AtTodoMVCPageWithClearedDataAfterEachTest;
 import org.junit.Test;
+import static homework.lesson7.part1.v1.pageobjects.pages.TodoMVCPage.TaskType.*;
 
-public class TodoMVCEndToEndTest extends AtTodoMVCPageWithClearedDataAfterEachTest {
+
+public class TodoMVSGeneralTest {
 
     TodoMVCPage page = new TodoMVCPage();
 
     @Test
     public void testTasksLifeCycle() {
 
-        page.add("1");
+        page.givenAtAll(ACTIVE, "1");
         page.toggle("1");
         page.assertTasks("1");
 
         page.filterActive();
         page.assertNoTasks();
-        page.add("2");
+        page.givenAtActive(page.aTask(COMPLETED, "1"), page.aTask(ACTIVE, "2"));
         page.toggleAll();
         page.assertNoTasks();
 

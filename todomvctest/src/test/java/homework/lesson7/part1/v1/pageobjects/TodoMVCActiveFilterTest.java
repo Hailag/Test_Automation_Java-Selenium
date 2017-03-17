@@ -31,14 +31,14 @@ public class TodoMVCActiveFilterTest extends BaseTest {
     public void testComplete() {
         page.givenAtActive(ACTIVE,"1", "2");
 
-        page.toggleAll();
-        page.assertNoTasks();
-        page.assertItemsLeft(0);
+        page.toggle("1");
+        page.assertTasks("2");
+        page.assertItemsLeft(1);
 
     }
 
     @Test
-    public void testClearComplete() {
+    public void testClearCompleted() {
         page.givenAtActive(page.aTask(ACTIVE, "1"), page.aTask(COMPLETED, "2"), page.aTask(COMPLETED, "3"));
 
         page.clearCompleted();
@@ -67,7 +67,7 @@ public class TodoMVCActiveFilterTest extends BaseTest {
 
     @Test
     public void testSwitchFromActiveToAll() {
-        page.givenAtActive(ACTIVE, "1", "2");
+        page.givenAtActive(page.aTask(ACTIVE, "1"), page.aTask(COMPLETED, "2"));
 
         page.filterAll();
         page.assertTasks("1", "2");

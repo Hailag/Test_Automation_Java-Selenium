@@ -36,7 +36,7 @@ public class TodoMVCAllFilterTest extends BaseTest{
         page.assertItemsLeft(0);
     }
     @Test
-    public void testAllComplete() {
+    public void testCompleteAll() {
         page.givenAtAll(ACTIVE,"1", "2");
 
         page.toggleAll();
@@ -45,7 +45,7 @@ public class TodoMVCAllFilterTest extends BaseTest{
     }
 
     @Test
-    public void testClearComplete() {
+    public void testClearCompleted() {
         page.givenAtAll(COMPLETED, "1","2");
 
         page.clearCompleted();
