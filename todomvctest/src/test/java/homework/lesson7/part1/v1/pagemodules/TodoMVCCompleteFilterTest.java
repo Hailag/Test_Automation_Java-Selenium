@@ -2,14 +2,13 @@ package homework.lesson7.part1.v1.pagemodules;
 
 import org.junit.Test;
 
-import static homework.lesson7.part1.v1.pagemodules.pages.TodoMVCPage.TaskType.*;
 import static homework.lesson7.part1.v1.pagemodules.pages.TodoMVCPage.*;
-
+import static homework.lesson7.part1.v1.pagemodules.pages.TodoMVCPage.TaskType.*;
 
 public class TodoMVCCompleteFilterTest {
 
     @Test
-    public void testDeleteAtCompleted() {
+    public void testDelete() {
         givenAtCompleted(COMPLETED,"1", "2");
 
         delete("1");
@@ -18,15 +17,7 @@ public class TodoMVCCompleteFilterTest {
     }
 
     @Test
-    public void testAddAtCompleted() {
-        givenAtCompleted(COMPLETED, "1");
-        add("2");
-        assertTasks("1");
-        assertItemsLeft(1);
-    }
-
-    @Test
-    public void testEditAtCompleted() {
+    public void testEdit() {
         givenAtCompleted(COMPLETED, "1", "2");
 
         edit("2", "2 edit");
@@ -34,17 +25,9 @@ public class TodoMVCCompleteFilterTest {
         assertItemsLeft(0);
     }
 
-    @Test
-    public void testCompleteAllAtCompleted() {
-        givenAtCompleted(COMPLETED, "1", "2");
-
-        toggleAll();
-        assertTasks("1","2");
-        assertItemsLeft(0);
-    }
 
     @Test
-    public void testReopenAllToCompleted() {
+    public void testReopenAll() {
         givenAtCompleted(COMPLETED, "1");
 
         toggleAll();
@@ -53,7 +36,7 @@ public class TodoMVCCompleteFilterTest {
     }
 
     @Test
-    public void deleteByClearTextAtCompleted() {
+    public void testDeleteByClear() {
         givenAtCompleted(COMPLETED, "1", "2");
 
         edit("2", "");
@@ -61,14 +44,6 @@ public class TodoMVCCompleteFilterTest {
         assertItemsLeft(0);
     }
 
-    @Test
-    public void testSwitchFromCompletedToAll() {
-        givenAtCompleted(aTask(ACTIVE, "1"), aTask(COMPLETED, "2"));
-
-        filterAll();
-        assertTasks( "1", "2");
-        assertItemsLeft(1);
-    }
 
     @Test
     public void testSwitchFromCompletedToActive() {

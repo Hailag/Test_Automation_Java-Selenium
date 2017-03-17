@@ -71,7 +71,7 @@ public class TodoMVCPage {
     @Step
     public static void editByClickOutOfTask(String oldTaskText, String newTaskText) {
         startEdit(oldTaskText, newTaskText);
-        $("#header h1").click(); //TODO Узнать можно ли кликнуть на пустую область?
+        $("#header h1").click();
     }
 
     @Step
@@ -149,7 +149,7 @@ public class TodoMVCPage {
         }
     }
 
-    public enum TaskType {
+    public static enum TaskType {
         ACTIVE("false"),
         COMPLETED("true");
 

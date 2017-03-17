@@ -73,7 +73,7 @@ public class TodoMVCAllFilterTest extends BaseTest{
     }
 
     @Test
-    public void editByClickOutOfTask() {
+    public void testEditByClickOutOfTask() {
         page.givenAtAll(ACTIVE, "1", "2");
 
         page.editByClickOutOfTask("2", "2 edited");
