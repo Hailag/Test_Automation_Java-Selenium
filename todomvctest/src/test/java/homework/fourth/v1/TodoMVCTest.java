@@ -45,15 +45,17 @@ public class TodoMVCTest extends AtTodoMVCPageWithClearedDataAfterEachTest {
 
     @Test
     public void testEditAtAll() {
-        givenAtAll(ACTIVE,"1", "2");
+        givenAtAll(aTask(ACTIVE, "1"), aTask(COMPLETED, "2"));
+
         edit("2", "2 edited");
         assertTasks("1", "2 edited");
-        assertItemsLeft(2);
+        assertItemsLeft(1);
     }
 
     @Test
     public void testCancelEditAtAll() {
-        givenAtAll(ACTIVE,"1");
+        givenAtAll(ACTIVE, "1");
+
         cancelEdit("1", "edited");
         assertTasks("1");
         assertItemsLeft(1);
@@ -61,22 +63,25 @@ public class TodoMVCTest extends AtTodoMVCPageWithClearedDataAfterEachTest {
 
     @Test
     public void testDeleteAtAll() {
-        givenAtAll(ACTIVE,"1");
+        givenAtAll(aTask(ACTIVE, "1"), aTask(COMPLETED, "2"));
 
         delete("1");
-        assertNoTasks();
+        assertTasks("2");
+        assertItemsLeft(0);
     }
     @Test
-    public void testAllCompleteAtAll() {
+    public void testCompleteAllAtAll() {
         givenAtAll(ACTIVE,"1", "2");
+
         toggleAll();
+        assertTasks("1", "2");
         assertItemsLeft(0);
     }
 
     @Test
     public void testClearCompleteAtAll() {
-        givenAtAll(ACTIVE,"1", "2");
-        toggleAll();
+        givenAtAll(COMPLETED, "1","2");
+
         clearCompleted();
         assertNoTasks();
     }
@@ -84,17 +89,10 @@ public class TodoMVCTest extends AtTodoMVCPageWithClearedDataAfterEachTest {
     @Test
     public void testReopenAtAll() {
         givenAtAll(COMPLETED,"1");
+
         toggle("1");
         assertTasks("1");
         assertItemsLeft(1);
-    }
-
-    @Test
-    public void testReopenAllAtAll() {
-        givenAtAll(COMPLETED,"1", "2");
-        toggleAll();
-        assertTasks("1", "2");
-        assertItemsLeft(2);
     }
 
     @Test
@@ -126,20 +124,19 @@ public class TodoMVCTest extends AtTodoMVCPageWithClearedDataAfterEachTest {
 
     @Test
     public void testEditAtActive() {
-        givenAtActive(ACTIVE,"1", "2");
+        givenAtActive(ACTIVE, "1");
 
-        edit("2", "2 edited");
-        assertTasks("1", "2 edited");
-        assertItemsLeft(2);
+        edit("1", "1 edited");
+        assertTasks( "1 edited");
+        assertItemsLeft(1);
     }
 
     @Test
     public void testDeleteAtActive() {
-        givenAtActive(ACTIVE, "1", "2");
+        givenAtActive(ACTIVE, "1");
 
-        delete("2");
-        assertTasks("1");
-        assertItemsLeft(1);
+        delete("1");
+        assertNoTasks();
     }
 
 
@@ -147,25 +144,18 @@ public class TodoMVCTest extends AtTodoMVCPageWithClearedDataAfterEachTest {
     public void testCompleteAtActive() {
         givenAtActive(ACTIVE,"1", "2");
 
-        toggleAll();
-        assertItemsLeft(0);
+        toggle("1");
+        assertTasks("2");
+        assertItemsLeft(1);
     }
 
     @Test
-    public void testClearCompleteAtActive() {
-        givenAtActive(ACTIVE, "1");
+    public void testClearCompletedAtActive() {
+        givenAtActive(aTask(ACTIVE, "1"), aTask(COMPLETED, "2"), aTask(COMPLETED, "3"));
 
         clearCompleted();
-        assertNoTasks();
-    }
-
-    @Test
-    public void testReopenAllAtActive() {
-        givenAtActive(COMPLETED,"1", "2");
-
-        assertNoTasks();
-        toggleAll();
-        assertItemsLeft(2);
+        assertTasks("1");
+        assertItemsLeft(1);
     }
 
     @Test
@@ -192,16 +182,7 @@ public class TodoMVCTest extends AtTodoMVCPageWithClearedDataAfterEachTest {
 
         filterAll();
         assertTasks("1", "2");
-        assertItemsLeft(1);
-    }
-
-    @Test
-    public void testSwitchFromActiveToCompleted() {
-        givenAtActive(aTask(ACTIVE, "1"), aTask(COMPLETED, "2"));
-
-        filterCompleted();
-        assertTasks( "2");
-        assertItemsLeft(1);
+        assertItemsLeft(2);
     }
 
     @Test
@@ -214,28 +195,11 @@ public class TodoMVCTest extends AtTodoMVCPageWithClearedDataAfterEachTest {
     }
 
     @Test
-    public void testAddAtCompleted() {
-        givenAtCompleted(COMPLETED, "1");
-        add("2");
-        assertTasks("1");
-        assertItemsLeft(1);
-    }
-
-    @Test
     public void testEditAtCompleted() {
         givenAtCompleted(COMPLETED, "1", "2");
 
         edit("2", "2 edit");
         assertTasks("1", "2 edit");
-        assertItemsLeft(0);
-    }
-
-    @Test
-    public void testCompleteAllAtCompleted() {
-        givenAtCompleted(COMPLETED, "1", "2");
-
-        toggleAll();
-        assertTasks("1","2");
         assertItemsLeft(0);
     }
 
@@ -249,21 +213,12 @@ public class TodoMVCTest extends AtTodoMVCPageWithClearedDataAfterEachTest {
     }
 
     @Test
-    public void deleteByClearTextAtCompleted() {
+    public void testDeleteByClearTextAtCompleted() {
         givenAtCompleted(COMPLETED, "1", "2");
 
         edit("2", "");
         assertTasks("1");
         assertItemsLeft(0);
-    }
-
-    @Test
-    public void testSwitchFromCompletedToAll() {
-        givenAtCompleted(aTask(ACTIVE, "1"), aTask(COMPLETED, "2"));
-
-        filterAll();
-        assertTasks( "1", "2");
-        assertItemsLeft(1);
     }
 
     @Test
