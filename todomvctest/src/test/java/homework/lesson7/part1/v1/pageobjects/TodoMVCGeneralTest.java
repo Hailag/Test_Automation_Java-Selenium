@@ -5,20 +5,21 @@ import org.junit.Test;
 import static homework.lesson7.part1.v1.pageobjects.pages.TodoMVCPage.TaskType.*;
 
 
-public class TodoMVSGeneralTest {
+public class TodoMVCGeneralTest {
 
     TodoMVCPage page = new TodoMVCPage();
 
     @Test
     public void testTasksLifeCycle() {
+        page.given();
 
-        page.givenAtAll(ACTIVE, "1");
+        page.add("1");
         page.toggle("1");
         page.assertTasks("1");
 
         page.filterActive();
         page.assertNoTasks();
-        page.givenAtActive(page.aTask(COMPLETED, "1"), page.aTask(ACTIVE, "2"));
+        page.add("2");
         page.toggleAll();
         page.assertNoTasks();
 

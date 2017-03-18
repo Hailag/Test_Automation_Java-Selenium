@@ -6,18 +6,19 @@ import static homework.lesson7.part1.v1.pagemodules.pages.TodoMVCPage.TaskType.*
 import static homework.lesson7.part1.v1.pagemodules.pages.TodoMVCPage.*;
 
 
-public class TodoMVCEndToEndTest {
+public class TodoMVCGeneralTest {
 
     @Test
     public void TodoMVSGeneralTest() {
+        given();
 
-        givenAtAll(ACTIVE, "1");
+        add("1");
         toggle("1");
         assertTasks("1");
 
         filterActive();
         assertNoTasks();
-        givenAtActive(aTask(COMPLETED, "1"), aTask(ACTIVE, "2"));
+        add("2");
         toggleAll();
         assertNoTasks();
 
