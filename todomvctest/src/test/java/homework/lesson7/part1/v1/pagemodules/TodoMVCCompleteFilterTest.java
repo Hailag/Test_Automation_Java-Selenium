@@ -2,8 +2,8 @@ package homework.lesson7.part1.v1.pagemodules;
 
 import org.junit.Test;
 
-import static homework.lesson7.part1.v1.pagemodules.pages.TodoMVCPage.*;
-import static homework.lesson7.part1.v1.pagemodules.pages.TodoMVCPage.TaskType.*;
+import static homework.lesson7.part1.v1.pagemodules.pages.TodoMVC.*;
+import static homework.lesson7.part1.v1.pagemodules.pages.TodoMVC.TaskType.*;
 
 public class TodoMVCCompleteFilterTest {
 
@@ -25,7 +25,6 @@ public class TodoMVCCompleteFilterTest {
         assertItemsLeft(0);
     }
 
-
     @Test
     public void testReopenAll() {
         givenAtCompleted(COMPLETED, "1");
@@ -44,7 +43,6 @@ public class TodoMVCCompleteFilterTest {
         assertItemsLeft(0);
     }
 
-
     @Test
     public void testSwitchFromCompletedToActive() {
         givenAtCompleted(aTask(ACTIVE, "1"), aTask(COMPLETED, "2"));
@@ -53,4 +51,5 @@ public class TodoMVCCompleteFilterTest {
         assertTasks( "1");
         assertItemsLeft(1);
     }
+
 }

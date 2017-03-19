@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.url;
 
-public class TodoMVCPage {
+public class TodoMVC {
 
     public static ElementsCollection tasks = $$("#todo-list>li");
 
@@ -114,7 +114,6 @@ public class TodoMVCPage {
         return results;
     }
 
-
     public static Task[] getTasks(TaskType taskType, String... taskTexts) {
         Task[] tasks = new Task[taskTexts.length];
 
@@ -165,7 +164,6 @@ public class TodoMVCPage {
         }
     }
 
-
     public static void givenAtActive(TaskType taskType, String... taskTexts) {
         given(getTasks(taskType, taskTexts));
         filterActive();
@@ -199,5 +197,6 @@ public class TodoMVCPage {
     public static Task aTask(TaskType type, String text) {
         return new Task(type, text);
     }
+
 }
 

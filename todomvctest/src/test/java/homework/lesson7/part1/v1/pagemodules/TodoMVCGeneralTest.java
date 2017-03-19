@@ -2,8 +2,7 @@ package homework.lesson7.part1.v1.pagemodules;
 
 import org.junit.Test;
 
-import static homework.lesson7.part1.v1.pagemodules.pages.TodoMVCPage.TaskType.*;
-import static homework.lesson7.part1.v1.pagemodules.pages.TodoMVCPage.*;
+import static homework.lesson7.part1.v1.pagemodules.pages.TodoMVC.*;
 
 
 public class TodoMVCGeneralTest {

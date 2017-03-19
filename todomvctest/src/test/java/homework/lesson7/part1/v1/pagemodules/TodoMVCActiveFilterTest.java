@@ -2,8 +2,8 @@ package homework.lesson7.part1.v1.pagemodules;
 
 import org.junit.Test;
 
-import static homework.lesson7.part1.v1.pagemodules.pages.TodoMVCPage.*;
-import static homework.lesson7.part1.v1.pagemodules.pages.TodoMVCPage.TaskType.*;
+import static homework.lesson7.part1.v1.pagemodules.pages.TodoMVC.*;
+import static homework.lesson7.part1.v1.pagemodules.pages.TodoMVC.TaskType.*;
 
 
 public class TodoMVCActiveFilterTest {
@@ -25,7 +25,6 @@ public class TodoMVCActiveFilterTest {
         assertNoTasks();
     }
 
-
     @Test
     public void testComplete() {
         givenAtActive(ACTIVE,"1", "2");
@@ -44,7 +43,6 @@ public class TodoMVCActiveFilterTest {
         assertTasks("1");
         assertItemsLeft(1);
     }
-
 
     @Test
     public void testCancelEdit() {
