@@ -10,6 +10,7 @@ import org.junit.runners.Suite;
 
 @RunWith(Categories.class)
 @Suite.SuiteClasses({TodoMVCTest.class, TodoOperationsAtAllFilterTest.class})
-@Categories.IncludeCategory(Buggy.class)
-public class BugsSuiteTest {
+@Categories.ExcludeCategory(Buggy.class)
+public class FullAcceptanceSuiteTest {
+
 }
