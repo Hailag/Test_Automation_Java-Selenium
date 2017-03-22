@@ -1,7 +1,9 @@
 package lesson_8;
 
 import lesson_8.pages.TodoMVCPage;
+import lesson_8.testsuites.Smoke;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 
 public class TodoMVCTest {
@@ -9,6 +11,7 @@ public class TodoMVCTest {
     TodoMVCPage page = new TodoMVCPage();
 
     @Test
+    @Category(Smoke.class)
     public void testTasksLifeCycle() {
         page.given();
 

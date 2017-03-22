@@ -1,13 +1,16 @@
 package lesson_8;
 
 import lesson_8.pages.TodoMVCPage;
+import lesson_8.testsuites.Smoke;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import static lesson_8.pages.TodoMVCPage.TaskType.*;
 
 
 public class TodoOperationsAtAllFilterTest {
     TodoMVCPage page = new TodoMVCPage();
+
 
     @Test
     public void testEdit() {
@@ -19,11 +22,31 @@ public class TodoOperationsAtAllFilterTest {
     }
 
     @Test
+    @Category(Smoke.class)
     public void testDelete() {
         page.givenAtAll(page.aTask(ACTIVE, "1"), page.aTask(COMPLETED, "2"));
 
         page.delete("1");
         page.assertTasks("2");
+        page.assertItemsLeft(0);
+    }
+
+    @Test
+    public void testComplete() {
+        page.givenAtActive(ACTIVE,"1", "2");
+
+        page.toggle("1");
+        page.assertTasks("2");
+        page.assertItemsLeft(1);
+
+    }
+
+    @Test
+    public void testCompleteAll() {
+        page.givenAtAll(ACTIVE,"1", "2");
+
+        page.toggleAll();
+        page.assertTasks("1", "2");
         page.assertItemsLeft(0);
     }
 
@@ -43,15 +66,6 @@ public class TodoOperationsAtAllFilterTest {
         page.toggleAll();
         page.assertNoTasks();
         page.assertItemsLeft(1);
-    }
-
-    @Test
-    public void testCompleteAll() {
-        page.givenAtAll(ACTIVE,"1", "2");
-
-        page.toggleAll();
-        page.assertTasks("1", "2");
-        page.assertItemsLeft(0);
     }
 
     @Test
