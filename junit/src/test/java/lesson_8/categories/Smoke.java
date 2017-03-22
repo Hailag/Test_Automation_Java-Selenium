@@ -1,4 +1,4 @@
-package lesson_8.testsuites;
+package lesson_8.categories;
 
 
 public interface Smoke {

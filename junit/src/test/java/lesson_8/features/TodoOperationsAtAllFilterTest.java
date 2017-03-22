@@ -1,13 +1,14 @@
-package lesson_8;
+package lesson_8.features;
 
 import lesson_8.pages.TodoMVCPage;
-import lesson_8.testsuites.Smoke;
+import lesson_8.categories.All;
+import lesson_8.categories.Smoke;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 import static lesson_8.pages.TodoMVCPage.TaskType.*;
 
-
+@Category(All.class)
 public class TodoOperationsAtAllFilterTest {
     TodoMVCPage page = new TodoMVCPage();
 
