@@ -4,7 +4,7 @@ import homework.Lesson8.testsuits.maven.pages.TodoMVCPage;
 import org.junit.Test;
 
 
-public class TodosE2ETest {
+public class TodoE2ETest {
 
     TodoMVCPage page = new TodoMVCPage();
 

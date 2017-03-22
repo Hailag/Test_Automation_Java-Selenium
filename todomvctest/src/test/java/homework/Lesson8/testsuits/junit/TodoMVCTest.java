@@ -4,7 +4,7 @@ import homework.Lesson8.testsuits.junit.pages.TodoMVCPage;
 import org.junit.Test;
 
 
-public class TodoMVCGeneralTest {
+public class TodoMVCTest {
 
     TodoMVCPage page = new TodoMVCPage();
 
