@@ -1,6 +1,6 @@
 package lesson_8;
 
-import lesson_8.categories.Buggy;
+import lesson_8.categories.All;
 import lesson_8.features.TodoMVCTest;
 import lesson_8.features.TodoOperationsAtAllFilterTest;
 import org.junit.experimental.categories.Categories;
@@ -10,6 +10,6 @@ import org.junit.runners.Suite;
 
 @RunWith(Categories.class)
 @Suite.SuiteClasses({TodoMVCTest.class, TodoOperationsAtAllFilterTest.class})
-
+@Categories.IncludeCategory(All.class)
 public class AllSuiteTest {
 }
