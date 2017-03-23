@@ -11,6 +11,9 @@
     <properties>
         <allure.version>1.5.0.RC2</allure.version>
         <aspectj.version>1.8.8</aspectj.version>
+        <driver.browser>firefox</driver.browser>
+        <test.includeCategories></test.includeCategories>
+        <test.excludeCategories></test.excludeCategories>
     </properties>
 
     <dependencies>
@@ -75,6 +78,26 @@
                     </dependency>
                 </dependencies>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.18.1</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.surefire</groupId>
+                        <artifactId>surefire-junit47</artifactId>
+                        <version>2.18.1</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <systemPropertyVariables>
+                        <webdriver.chrome.driver>/Apps/Chromedriver</webdriver.chrome.driver>
+                        <driver.browser>${driver.browser}</driver.browser>
+                    </systemPropertyVariables>
+                    <groups>${test.includeCategories}</groups>
+                    <excludedGroups>${test.excludeCategories}</excludedGroups>
+                </configuration>
+            </plugin>
         </plugins>
         <resources>
             <resource>
@@ -94,5 +117,36 @@
             </plugin>
         </plugins>
     </reporting>
+
+    <profiles>
+        <profile>
+            <id>Smoke</id>
+            <properties>
+                <test.includeCategories>lesson_8.categories.Smoke</test.includeCategories>
+                <test.excludeCategories></test.excludeCategories>
+            </properties>
+        </profile>
+        <profile>
+            <id>All</id>
+            <properties>
+                <test.includeCategories></test.includeCategories>
+                <test.excludeCategories></test.excludeCategories>
+            </properties>
+        </profile>
+        <profile>
+            <id>Buggy</id>
+            <properties>
+                <test.includeCategories>lesson_8.categories.Buggy</test.includeCategories>
+                <test.excludeCategories></test.excludeCategories>
+            </properties>
+        </profile>
+        <profile>
+            <id>FullAcceptance</id>
+            <properties>
+                <test.includeCategories></test.includeCategories>
+                <test.excludeCategories>lesson_8.categories.Buggy</test.excludeCategories>
+            </properties>
+        </profile>
+    </profiles>
 
 </project>
