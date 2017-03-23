@@ -1,5 +1,6 @@
 package lesson_8.features;
 
+import lesson_8.categories.Buggy;
 import lesson_8.pages.TodoMVCPage;
 import lesson_8.categories.All;
 import lesson_8.categories.Smoke;
@@ -70,11 +71,12 @@ public class TodoOperationsAtAllFilterTest {
     }
 
     @Test
+    @Category(Buggy.class)
     public void testClearCompleted() {
         page.givenAtActive(page.aTask(ACTIVE, "1"), page.aTask(COMPLETED, "2"), page.aTask(COMPLETED, "3"));
 
         page.clearCompleted();
-        page.assertTasks("1");
+        page.assertTasks("2", "3");
         page.assertItemsLeft(1);
     }
 
