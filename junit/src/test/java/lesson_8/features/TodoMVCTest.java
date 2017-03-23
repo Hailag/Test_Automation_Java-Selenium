@@ -1,12 +1,11 @@
 package lesson_8.features;
 
 import lesson_8.pages.TodoMVCPage;
-import lesson_8.categories.All;
 import lesson_8.categories.Smoke;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
-@Category({Smoke.class, All.class}) //Сделать это специально.
+@Category(Smoke.class)
 public class TodoMVCTest {
 
     TodoMVCPage page = new TodoMVCPage();
