@@ -12,6 +12,7 @@
         <allure.version>1.5.0.RC2</allure.version>
         <aspectj.version>1.8.8</aspectj.version>
         <suite>*Test</suite>
+        <driver.browser>firefox</driver.browser>
     </properties>
 
     <dependencies>
@@ -57,6 +58,10 @@
                 </dependencies>
                 <configuration>
                     <test>lesson_8.${suite}</test>
+                    <systemPropertyVariables>
+                       <webdriver.chrome.driver>/Apps/Chromedriver</webdriver.chrome.driver>
+                        <driver.browser>${driver.browser}</driver.browser>
+                    </systemPropertyVariables>
                 </configuration>
             </plugin>
         </plugins>
