@@ -1,14 +1,15 @@
 package lesson_8.features;
 
+import lesson_8.categories.Smoke;
 import lesson_8.pages.TodoMVCPage;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
-/**
- * Created by o.iakovenko on 23.03.2017.
- */
+
 public class TodoMVCTest {
     TodoMVCPage page = new TodoMVCPage();
 
+    @Category(Smoke.class)
     @Test
     public void testTasksLifeCycle() {
         page.given();

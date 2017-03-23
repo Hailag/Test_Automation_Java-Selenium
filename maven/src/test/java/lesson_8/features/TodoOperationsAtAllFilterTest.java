@@ -9,9 +9,7 @@ import org.junit.experimental.categories.Category;
 import static lesson_8.pages.TodoMVCPage.TaskType.ACTIVE;
 import static lesson_8.pages.TodoMVCPage.TaskType.COMPLETED;
 
-/**
- * Created by o.iakovenko on 23.03.2017.
- */
+
 public class TodoOperationsAtAllFilterTest {
     TodoMVCPage page = new TodoMVCPage();
 
