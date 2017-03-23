@@ -11,6 +11,5 @@ import org.junit.runners.Suite;
 
 @RunWith(Categories.class)
 @Suite.SuiteClasses({TodoMVCTest.class, TodoOperationsAtAllFilterTest.class})
-@Categories.IncludeCategory({Smoke.class, Buggy.class})
 public class AllSuiteTest {
 }
