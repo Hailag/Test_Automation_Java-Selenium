@@ -1,12 +1,13 @@
-package lesson_8.features;
+package lesson_8;
 
 import lesson_8.categories.Smoke;
 import lesson_8.pages.TodoMVCPage;
+import lesson_8.testconfigs.BaseTest;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 
-public class TodoMVCTest {
+public class TodoMVCTest extends BaseTest {
     TodoMVCPage page = new TodoMVCPage();
 
     @Category(Smoke.class)

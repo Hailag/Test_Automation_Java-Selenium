@@ -59,7 +59,7 @@
                 <configuration>
                     <test>lesson_8.${suite}</test>
                     <systemPropertyVariables>
-                       <webdriver.chrome.driver>/Apps/Chromedriver</webdriver.chrome.driver>
+                       <webdriver.chrome.driver>C://Apps//Chromedriver//chromedriver.exe</webdriver.chrome.driver>
                         <driver.browser>${driver.browser}</driver.browser>
                     </systemPropertyVariables>
                 </configuration>

@@ -1,8 +1,9 @@
-package lesson_8.features;
+package lesson_8;
 
 import lesson_8.categories.Buggy;
 import lesson_8.categories.Smoke;
 import lesson_8.pages.TodoMVCPage;
+import lesson_8.testconfigs.BaseTest;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
@@ -10,7 +11,7 @@ import static lesson_8.pages.TodoMVCPage.TaskType.ACTIVE;
 import static lesson_8.pages.TodoMVCPage.TaskType.COMPLETED;
 
 
-public class TodoOperationsAtAllFilterTest {
+public class TodoOperationsAtAllFilterTest extends BaseTest {
     TodoMVCPage page = new TodoMVCPage();
 
 
