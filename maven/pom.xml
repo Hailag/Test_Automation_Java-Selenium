@@ -91,7 +91,7 @@
                 </dependencies>
                 <configuration>
                     <systemPropertyVariables>
-                        <webdriver.chrome.driver>C://Apps//Chromedriver//chromedriver.exe</webdriver.chrome.driver>
+                        <webdriver.chrome.driver>C://Apps//Chromedriver</webdriver.chrome.driver>
                         <driver.browser>${driver.browser}</driver.browser>
                     </systemPropertyVariables>
                     <groups>${test.includeCategories}</groups>

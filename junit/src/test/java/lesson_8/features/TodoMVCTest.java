@@ -9,12 +9,7 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 @Category(Smoke.class)
-public class TodoMVCTest {
-
-    @BeforeClass
-    public static void setup (){
-        Configuration.browser = System.getProperty("driver.browser");
-    }
+public class TodoMVCTest extends BaseTest {
 
     TodoMVCPage page = new TodoMVCPage();
 
