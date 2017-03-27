@@ -13,7 +13,7 @@ public class GoogleSearch {
     }
 
     public static void search(String searchText){
-        $(By.name("q")).setValue(searchText).submit();
+        $(By.name("q")).setValue(searchText).click();
     }
 
     public static void assertResult(int count){ // как реализовать ожидаемый результат? Где почитать?
