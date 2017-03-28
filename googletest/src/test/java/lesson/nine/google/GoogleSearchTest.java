@@ -1,7 +1,15 @@
 package lesson.nine.google;
 
+import com.codeborne.selenide.ElementsCollection;
 import org.junit.Test;
-import static lesson.nine.google.pages.GoogleSearch.*;
+import org.openqa.selenium.By;
+
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.WebDriverRunner.url;
+import static org.junit.Assert.assertEquals;
 
 /**
  1 visit http://google.com/ncr
@@ -15,16 +23,32 @@ import static lesson.nine.google.pages.GoogleSearch.*;
 public class GoogleSearchTest {
 
     @Test
-    public void SearchAndResultTest (){
+    public void SearchAndFollowLinkTest(){
 
-        googleMainPage();
+        visit();
 
         search("Selenium automates browsers");
-        assertResult(10);
+        assertResultsCount(10);
+        results.get(0).shouldHave(text("Selenium automates browsers"));
+        results.get(0).$(".r>a").click();
 
-
-
+        $("#header>h1").shouldHave(text("Browser Automation"));
+        assertEquals("http://www.seleniumhq.org/", url());
     }
 
+
+    private ElementsCollection results = $$("#rso>._NId>.g>.rc,.srg>.g");// По другому никак не получалось
+
+    private void visit() {
+        open("http://google.com/ncr");
+    }
+
+    private static void search(String searchText) {
+        $(By.name("q")).setValue(searchText).pressEnter();
+    }
+
+    private void assertResultsCount(int count) {
+        results.shouldHaveSize(count);
+    }
 
 }
