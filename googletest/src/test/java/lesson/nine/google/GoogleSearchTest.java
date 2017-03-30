@@ -23,7 +23,7 @@ import static org.junit.Assert.assertEquals;
 public class GoogleSearchTest {
 
     @Test
-    public void searchAndFollowLinkTest(){
+    public void searchAndFollowLink(){
 
         visit();
 
