@@ -38,6 +38,10 @@ public class Gmail {
 
     }
 
+    public static void refresh () {
+        $(byText("Refresh")).click();
+    }
+
     public static void search (String searchTexts) {
         $(byName("q")).setValue(searchTexts).pressEnter();
     }
