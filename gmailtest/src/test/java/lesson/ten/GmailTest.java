@@ -16,7 +16,7 @@ public class GmailTest {
     }
 
     @Test
-    public void testloginGmail() {
+    public void testLoginSendReceiveSearch() {
 
         visit();
         login(email, password);
