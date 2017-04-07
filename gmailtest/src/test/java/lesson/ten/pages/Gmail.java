@@ -4,9 +4,7 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selectors;
 import org.openqa.selenium.By;
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.by;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selectors.byTitle;
+import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.open;
@@ -40,7 +38,9 @@ public class Gmail {
 
     }
 
-
+    public static void search (String searchTexts) {
+        $(byName("q")).setValue(searchTexts).pressEnter();
+    }
 
     public static void assertArrived (String arrivedMessage) {
         $(".vh").shouldHave(text(arrivedMessage));

@@ -21,11 +21,14 @@ public class GmailTest {
         visit();
         login(email, password);
 
+        search(subject);
+
         clickToCompose();
         sendMail(email, subject);
         assertArrived("Your message has been sent.");
 
         checkSendMail(0, subject);
+
         checkInbox(0, subject);
     }
 
