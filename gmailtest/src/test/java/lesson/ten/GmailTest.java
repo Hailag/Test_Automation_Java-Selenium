@@ -3,6 +3,8 @@ package lesson.ten;
 import com.codeborne.selenide.Configuration;
 import org.junit.Test;
 
+import java.util.Calendar;
+
 import static lesson.ten.config.TestData.email;
 import static lesson.ten.config.TestData.password;
 import static lesson.ten.pages.Gmail.*;
@@ -20,22 +22,21 @@ public class GmailTest {
 
         visit();
         login(email, password);
-
-        //search(subject);
-
         clickToCompose();
         sendMail(email, subject);
         refresh();
 
-        //assertArrived("Your message has been sent.");
+        assertEmail(0, subject);
 
-        checkSendMail(0, subject);
+        clickToSent();
+        assertEmail(0, subject);
 
-        checkInbox(0, subject);
+        clickToInbox();
+        search(subject);
+        assertEmails(subject);
     }
 
-    String subject = "new letter"; // TODO текст значением даты-времени в миллисекундах
-
+    String subject = String.format("New letter %s", Calendar.getInstance().getTime());
 
 
 }

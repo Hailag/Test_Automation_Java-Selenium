@@ -3,6 +3,8 @@ package lesson.ten.pages;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selectors;
 import org.openqa.selenium.By;
+
+import static com.codeborne.selenide.CollectionCondition.texts;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
@@ -30,6 +32,18 @@ public class Gmail {
         $(byText("COMPOSE")).click();
     }
 
+    public static void clickToSent (){
+        $(byTitle("Sent Mail")).click();
+    }
+
+    public static void clickToInbox () {
+        $(byTitle("Inbox")).click();
+    }
+
+    public static void assertEmails(String... emailHeaderTexts) {
+        emails.shouldHave(texts(emailHeaderTexts));
+    }
+
     public static void sendMail(String email, String text) {
 
         $(By.name("to")).setValue(email);
@@ -39,24 +53,14 @@ public class Gmail {
     }
 
     public static void refresh () {
-        $(byText("Refresh")).click();
+        $(byTitle("Refresh")).click();
     }
 
     public static void search (String searchTexts) {
         $(byName("q")).setValue(searchTexts).pressEnter();
     }
 
-    public static void assertArrived (String arrivedMessage) {
-        $(".vh").shouldHave(text(arrivedMessage));
-    }
-
-    public static void checkSendMail (int index, String emailHeaderText) {
-        $(byTitle("Sent Mail")).click();
-        emails.get(index).shouldHave(text(emailHeaderText));
-    }
-
-    public static void checkInbox (int index, String emailHeaderText){
-        $(byTitle("Inbox")).click();
+    public static void assertEmail(int index, String emailHeaderText) {
         emails.get(index).shouldHave(text(emailHeaderText));
     }
 }
