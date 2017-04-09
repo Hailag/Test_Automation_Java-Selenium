@@ -40,10 +40,6 @@ public class Gmail {
         $(byTitle("Inbox")).click();
     }
 
-    public static void assertEmails(String... emailHeaderTexts) {
-        emails.shouldHave(texts(emailHeaderTexts));
-    }
-
     public static void sendMail(String email, String text) {
 
         $(By.name("to")).setValue(email);
@@ -62,5 +58,9 @@ public class Gmail {
 
     public static void assertEmail(int index, String emailHeaderText) {
         emails.get(index).shouldHave(text(emailHeaderText));
+    }
+
+    public static void assertEmails(String... emailHeaderTexts) {
+        emails.shouldHave(texts(emailHeaderTexts));
     }
 }
