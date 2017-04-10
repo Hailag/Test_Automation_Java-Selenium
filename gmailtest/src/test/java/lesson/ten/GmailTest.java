@@ -1,6 +1,10 @@
 package lesson.ten;
 
 import com.codeborne.selenide.Configuration;
+import lesson.ten.config.TestData;
+import lesson.ten.pages.Gmail;
+import lesson.ten.pages.Mail;
+import lesson.ten.pages.Menu;
 import org.junit.Test;
 
 import java.util.Calendar;
@@ -21,22 +25,20 @@ public class GmailTest {
     public void testLoginSendReceiveSearch() {
 
         visit();
-        login(email, password);
-        clickToCompose();
-        sendMail(email, subject);
-        refresh();
+        Gmail.login(TestData.email, TestData.password);
+        Mail.sendMail(TestData.email, subject);
+        Menu.refresh();
 
-        assertEmail(0, subject);
+        Mail.assertEmail(0, subject);
 
-        clickToSent();
-        assertEmail(0, subject);
+        Menu.clickToSent();
+        Mail.assertEmail(0, subject);
 
-        clickToInbox();
-        search(subject);
-        assertEmails(subject);
+        Menu.clickToInbox();
+        Menu.search(subject);
+        Mail.assertEmails(subject);
+
     }
 
     String subject = String.format("New letter %s", Calendar.getInstance().getTime());
-
-
 }
