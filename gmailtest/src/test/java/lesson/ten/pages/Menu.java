@@ -18,7 +18,7 @@ public class Menu {
         $(byTitle("Refresh")).click();
     }
 
-    public static void search (String searchTexts) {
-        $(byName("q")).setValue(searchTexts).pressEnter();
+    public static void search (String searchText) {
+        $(byName("q")).setValue(searchText).pressEnter();
     }
 }

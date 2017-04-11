@@ -23,8 +23,9 @@ public class GmailTest {
 
     @Test
     public void testLoginSendReceiveSearch() {
+        String subject = String.format("New letter %s", Calendar.getInstance().getTime());
 
-        visit();
+        Gmail.visit();
         Gmail.login(TestData.email, TestData.password);
         Mail.sendMail(TestData.email, subject);
         Menu.refresh();
@@ -40,5 +41,4 @@ public class GmailTest {
 
     }
 
-    String subject = String.format("New letter %s", Calendar.getInstance().getTime());
 }
